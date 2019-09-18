@@ -8,8 +8,7 @@ class Polynomial{
         deg2=sc.nextInt();
         pol1=new int[deg1+1];
         pol2=new int[deg2+1];
-        pro=new int[(deg1+1)*(deg2+1)];
-        deg=new int[(deg1+1)*(deg2+1)];
+        pro=new int[(deg1+1)+(deg2)];
         System.out.println("enter polynomial 1 coeffs in acending order of degree");
         for(int i=0;i<=deg1;i++) {
             pol1[i]=sc.nextInt();
@@ -18,22 +17,18 @@ class Polynomial{
         for(int i=0;i<=deg2;i++) {
             pol2[i]=sc.nextInt();
         }
-        c=0;
         for (int i = 0; i <= deg1; i++) {
-            for (int j = 0; j <= deg2; j++,c++) {
-                pro[c]=pol1[i]*pol2[j];
-                deg[c]=i+j;
+            for (int j = 0; j <= deg2; j++) {
+                pro[i+j]+=pol1[i]*pol2[j];
             }
         }
-        int limit=(deg1+1)*(deg2+1);
-        int sum;
-        for (int i = deg1+deg2; i <= 0; i--) {
-            sum=0;
-            for (int j = 0; j < limit; j++) {
-                if (deg[j]==i)
-                    sum+=pro[j];
-            }
-            System.out.print(sum+"x^"+i+"+");
+
+        for (int i = deg1+deg2; i >= 0; i--) {
+            if (i!=0)
+                System.out.print(pro[i]+"x^"+i+"+");
+            else
+                System.out.println(pro[i]);
         }
+
     }
 }
